@@ -1,0 +1,144 @@
+---
+import portrait from "/main-portrait.jpg";
+import paint from "/paint.png";
+---
+
+<div
+  class="relative mx-12 flex flex-col items-center justify-center gap-12 xl:flex-row xl:gap-36"
+>
+  <div class="w-full xl:w-1/2">
+    <h1 class="text-xl">
+      ⚡ Empowering <span id="scribble" class="font-bold"
+        >DevOps with Python Mastery</span
+      >: Transforming Possibilities into Reality!
+    </h1>
+
+    <div class="relative">
+      <svg class="absolute h-full w-full overflow-visible">
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style={{ stopColor: "#DC3A2B", stopOpacity: 1 }}
+            ></stop>
+            <stop offset="100%" style={{ stopColor: "#E18510", stopOpacity: 1 }}
+            ></stop>
+          </linearGradient>
+        </defs>
+        <path
+          id="border-path"
+          fill="none"
+          stroke="url(#gradient)"
+          stroke-width="4"></path>
+      </svg>
+      <p id="anim-p" class="p-6 text-main">
+        Meet <span class="font-bold text-primary">Rishikesh Jagadale</span>, the
+        <span class="font-bold text-primary">'Little Monster'</span> fueling the
+        world of Python DevOps from the heart of India. With a relentless pursuit
+        of excellence, I am a force to be reckoned with in the realm of technology.
+        <br />
+        <br />
+        📚 My journey has been one of continuous learning and growth, acquiring in-depth
+        knowledge of cloud technologies ☁️, infrastructure management 🏢, and containerization
+        🐳. 💡 I bring this expertise to the table, providing adaptable solutions
+        that empower organizations to thrive in the digital era
+        <br />
+        <br />
+        🤝 Collaboration lies at the heart of my approach. By working closely with
+        cross-functional teams 👥, I forge strong partnerships, leveraging collective
+        knowledge 🧠 and diverse perspectives 🌍 to create groundbreaking solutions
+        💡. Together, we can unlock the true potential of Python DevOps and usher
+        in a new era of technological advancement ⚡️.
+        <br />
+        <br />
+        Join me on this exhilarating journey as we navigate the intricate landscapes
+        of coding, infrastructure, and automation. Let's embrace the power of Python
+        🐍, revolutionize the way businesses operate 🚀, and leave an indelible mark
+        on the world of DevOps 🌍.
+        <br />
+      </p>
+    </div>
+    <div
+      class="flex justify-center pt-12 text-center text-main text-content xl:gap-16"
+    >
+      <div class="w-32">
+        <h2>Contest Rating</h2>
+        <p id="art-counter" class="text-xl font-bold">1812</p>
+      </div>
+      <div class="w-32">
+        <h2>Contributions</h2>
+        <p id="youtube-counter" class="text-xl font-bold">854</p>
+      </div>
+      <div class="w-32">
+        <h2>Profile Views</h2>
+        <p id="reviews-counter" class="text-bold text-xl font-bold">389+</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative">
+    <img class="h-full" src={portrait} alt="Hua's portrait" />
+    <div id="paint" class="absolute bottom-0 right-0 translate-y-1/4">
+      <img src={paint} alt="paint" />
+    </div>
+  </div>
+</div>
+<div class="mt-12 h-6 w-full bg-black"></div>
+
+<style>
+  #border-path {
+    animation: draw 1s forwards 1s ease-out;
+  }
+
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+</style>
+
+<script>
+  function updatePath() {
+    const textMain = document.querySelector("#anim-p") as HTMLElement;
+    const path = document.querySelector("#border-path") as SVGPathElement;
+
+    if (textMain && path) {
+      path.setAttribute(
+        "d",
+        `M0,0 V${textMain.offsetHeight} H${textMain.offsetWidth} v${
+          textMain.offsetHeight / 2
+        }`
+      );
+      const pathLength = path.getTotalLength();
+
+      path.style.strokeDasharray = pathLength.toString();
+      path.style.strokeDashoffset = pathLength.toString();
+    }
+  }
+
+  //Increment
+  function incrementCounter(
+    selector: string,
+    current: number,
+    target: number,
+    duration: number,
+    letter: string = ""
+  ) {
+    let counter = document.getElementById(selector);
+    let stepTime = Math.abs(Math.floor(duration / target));
+    if (current < target && counter) {
+      current++;
+      counter.innerText = current.toString() + letter;
+      setTimeout(
+        () => incrementCounter(selector, current, target, duration, letter),
+        stepTime
+      );
+    }
+  }
+  incrementCounter("art-counter", 0, 1812, 10);
+  incrementCounter("youtube-counter", 0, 854, 1000, "+");
+  incrementCounter("reviews-counter", 0, 389, 1000, "+");
+
+  // Update the path when the page loads
+  window.addEventListener("DOMContentLoaded", updatePath);
+  // Update the path when the window is resized
+  window.addEventListener("resize", updatePath);
+</script>
