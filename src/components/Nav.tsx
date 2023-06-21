@@ -82,7 +82,7 @@ export default function Nav() {
         className="flex gap-12"
       >
         <img src={avatar} alt="Hua profile picture" />
-        <motion.div className="hidden items-center gap-12 xl:flex">
+        <motion.div className="hidden cursor-pointer items-center gap-12 xl:flex">
           <img src={dribble} alt="Dribble Account" />
           <img src={twitter} alt="Twitter Account" />
           <img src={youtube} alt="Youtube Channel" />
