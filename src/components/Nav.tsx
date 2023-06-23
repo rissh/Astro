@@ -1,4 +1,4 @@
-import avatar from "/avatar.png";
+//
 import dribble from "/dribble.png";
 import twitter from "/twitter.png";
 import youtube from "/youtube.png";
@@ -81,7 +81,6 @@ export default function Nav() {
         transition={{ delay: 0.35 }}
         className="flex gap-12"
       >
-        <img src={avatar} alt="Hua profile picture" />
         <motion.div className="hidden cursor-pointer items-center gap-12 xl:flex">
           <img src={dribble} alt="Dribble Account" />
           <img src={twitter} alt="Twitter Account" />
